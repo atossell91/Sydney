@@ -37,13 +37,14 @@ async def start_process(executable, flags, eindex, websocket):
         stderr=asyncio.subprocess.PIPE,
     )
     processes.append(process)
+    pindex = len(processes)-1
+    print(f"NEW PROCESS INFO: Index: {pindex}, PID: {process.pid}")
 
     await websocket.send(json.dumps({
         "type": "init",
-        "pindex": process_index,
+        "pindex": pindex,
         "eindex": eindex
     }))
-    process_index = process_index + 1
 
     print("Running")
 
@@ -62,7 +63,7 @@ async def stop_process(index):
     if index >= 0 and index < len(processes):
         print(f"Attempting to kill process {index}")
         process = processes[index]
-        print(f"Process is {process}")
+        print(f"STOP PROCESS INFO: Index: {index}, PID: {process.pid}")
         process.kill()
         await process.wait()
         return True
