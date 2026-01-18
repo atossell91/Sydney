@@ -1,0 +1,6 @@
+{
+    "source_files": [
+        "./comps/ProcessView.html"
+    ],
+    "out_dir": "."
+}

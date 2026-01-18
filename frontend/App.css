@@ -1,0 +1,6 @@
+.output-area {
+    max-height: 10rem;
+    background-color: hotpink;
+    overflow:scroll;
+    overflow-x:hidden;
+}
